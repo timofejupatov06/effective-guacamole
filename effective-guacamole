@@ -1,0 +1,14 @@
+protocol MediaReducerProtocol {
+    mutating func reduce(_ currentState: Media?,
+                         _ action: MediaModification) -> Media?
+}
+
+struct MediaReducer: MediaReducerProtocol {
+    
+    private(set) var videoSettingsReducer: VideoSettingsReducerProtocol
+    private(set) var maskSettingsReducer: MaskSettingsReducerProtocol
+    
+    mutating func reduce(_ currentState: Media?,
+                         _ action: MediaModification) -> Media? {
+        
+        var newState = currentState
